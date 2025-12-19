@@ -1,66 +1,94 @@
 <!DOCTYPE html>
-
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Polaris Wu</title>
-    <link rel="stylesheet" href="./styles.css">
-  </head>
-  
-  <body>
-    <div id="container">
-      <header>
-        <h1 class="title"><a class="heading" href="index.html">// Welcome To My Website!</a></h1>
-      </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polaris Wu</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Particle Canvas -->
+  <canvas id="particleCanvas"></canvas>
 
-      <nav>
-        <ul>
-          <li><a href="./pages/major_computerScience.html">Computer Science</a></li>
-          <li><a href="./pages/minor_math.html">Mathematics</a></li>
-          <li><a href="./pages/liberal_arts.html">Liberal Arts</a></li>
-        </ul>
-      </nav>
+  <!-- Cursor Follower -->
+  <div class="cursor-follower"></div>
 
-      <div class="image-container-index">
-        <img src="./images/butterfly.png" srcset="./images/butterfly.png 2x, ./images/butterfly.png 3x" width=20% height=auto alt="butterfly_transition"></div>
+  <div class="container">
+    <div class="content-wrapper">
+      <div class="name-section">
+        <h1 class="name">Polaris Wu</h1>
+        <div class="name-divider"></div>
+        <p class="name-alt">Siqi Wu</p>
+      </div>
 
-      <div id="song">Start with my favorite song! Always feeling energetic when I hear it. Press play and enjoy the vibes:</div>
-      <audio controls>
-        <source src="22.mp3" type="audio/mpeg">
-        <source src="22.ogg" type="audio/ogg">
-        <p>Your browser cannot play this audio but you can download the file <a href="22.mp3" download>here</a>.</p>
-      </audio>
+      <div class="clock-section" id="clockContainer">
+        <div class="clock-display">
+          <div class="clock-icon-wrapper">
+            <div class="clock-icon">🕐</div>
+            <div class="clock-ring"></div>
+          </div>
+          <div class="time-info">
+            <div class="time-label">Eastern Standard Time</div>
+            <div class="time-value" id="estTime">--:--:--</div>
+            <div class="date-value" id="estDate">-- --, ----</div>
+          </div>
+        </div>
+        <div class="clock-hint">
+          <span class="hint-icon">✨</span>
+          <span>Click to explore my latest project</span>
+          <span class="hint-arrow">→</span>
+        </div>
+      </div>
 
-      <div id="dailyMessage">Welcome! Today's message is:</div>
+      <div class="about-section">
+        <div class="section-header">
+          <h2>About Me</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="about-content">
+          <p>
+            I'm passionate about <strong>backend development</strong>, building robust and scalable systems that power modern applications. 
+            I'm deeply interested in <strong>cloud computing</strong> and its transformative potential, exploring how cloud technologies 
+            can solve complex problems and enable innovation. Additionally, I'm enthusiastic about <strong>AI</strong> and its applications, 
+            constantly learning about how artificial intelligence can enhance and revolutionize the way we build software.
+          </p>
+        </div>
+      </div>
 
-      <main>
-        <article>
-          <h2>Introduction</h2>
-          <p>Hi! I'm Polaris Wu. Currently a <a href="https://cs.nyu.edu/home/index.html">computer science major</a> student:) and am planning to take mathematics as a minor. I'm also explored various liberal arts topics and take many relevant class at NYU. This semester I delve deep into analyzing the relationship between the modern technology and we human beings. Last semester I immersed myself into the artistic atmosphere, appreciating Japanese masterpiece and catching a glimpse of their life style and life attitude. Generally, I love getting exposed to new things and perspectives, and learning new knowledge!</p>
-        </article>
-
-        <article>
-          <h2>About</h2>
-          <p>I'll introduce my academic interests around three sections: <a href="./pages/major_computerScience.html">Computer Science</a>, <a href="./pages/minor_math.html">Mathematics</a>, <a href="./pages/liberal_arts.html">Liberal Arts</a>. <br>Note: Since I'm still in the process of learning and exploring computer science, and there's not too much stuff about mathematics, I'll elaborate on these two sections later:) Now I posted my personal insights about one of my favorite artwork as an example of my Liberal Arts' outcome!</p>
-        </article>
-
-        <article>
-          <h2>Trajectory | Highlight</h2>
-          <p>Major: Computer Science <br>Currently doing projects of consolidating my knowledge of data structures; making personal websites</p>
-          <p>Minor: Mathematics <br>I find a sense of ease from studying mathematics:)</p>
-          <p>Other Exploration: <br>Incoporating many different insights and perspectives and gradually having my own unique view about myself and the world! This includes the rapid growth of modern technology, the social structure of countries, inequality and equality among humans and non-human species, etc.</p>
-        </article>
-      </main>
-
-      <footer>
-        <p id="credit"> Contact me if you have the same interests! <br> <br>
-        Email: <a href="https://www.google.com/gmail/about/">polariswu74@gmail.com</a> <br>
-			  Phone Number: (347)215-0630 <br>
-			  Current Location: NY, USA <br> <br>
-        Copyright 2024 @Polaris Wu </p>
+      <footer class="footer-section">
+        <div class="footer-content">
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 2H7C5.89543 2 5 2.89543 5 4V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V4C19 2.89543 18.1046 2 17 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 18H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <a href="tel:+13472150630" class="contact-link">+1 3472150630</a>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="L22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <a href="mailto:polariswu74@gmail.com" class="contact-link">polariswu74@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6 9H2V21H6V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <a href="https://www.linkedin.com/in/siqiwu-/" target="_blank" rel="noopener noreferrer" class="contact-link">LinkedIn</a>
+          </div>
+        </div>
       </footer>
-    </div> 
+    </div>
+  </div>
 
-    <script src="./js/main.js"></script>
-  </body>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/particles.js"></script>
+  <script src="assets/js/cursor.js"></script>
+</body>
 </html>
