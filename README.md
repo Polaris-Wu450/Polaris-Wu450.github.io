@@ -1,5 +1,4 @@
 # I'm Polaris Wu. Welcome to My Personal Portfolio
-# Polaris Wu — Personal Portfolio
 
 Live site: https://polaris-wu450.github.io
 
