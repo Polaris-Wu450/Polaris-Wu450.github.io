@@ -3,92 +3,1234 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Polaris Wu</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>Polaris Wu — Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --warm-white: #FDFBF7;
+      --sand: #F5F0E8;
+      --sand-dark: #E8E0D0;
+      --ink: #1A1A1A;
+      --ink-light: #4A4A4A;
+      --ink-muted: #8A8A8A;
+      --accent: #D4883C;
+      --accent-light: #E8A85C;
+      --accent-bg: #FFF5EB;
+      --sky: #4A90B8;
+      --sky-light: #E8F2F8;
+      --green: #5A8C6A;
+      --green-light: #EBF5EE;
+      --tag-bg: #F0EDE6;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.08);
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: var(--warm-white);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ====== NAV ====== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 40px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(253, 251, 247, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: color 0.25s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-mobile-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--ink);
+      margin: 4px 0;
+      transition: 0.3s;
+    }
+
+    /* ====== HERO ====== */
+    .hero {
+      padding: 160px 40px 100px;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-greeting {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.2s;
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 24px;
+      letter-spacing: -1.5px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.35s;
+    }
+
+    .hero-name .alt-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.4em;
+      color: var(--ink-muted);
+      font-weight: 400;
+      letter-spacing: 1px;
+      display: block;
+      margin-top: 8px;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--ink-light);
+      max-width: 600px;
+      line-height: 1.75;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.5s;
+    }
+
+    .hero-desc strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.65s;
+    }
+
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .hero-link.primary {
+      background: var(--ink);
+      color: var(--warm-white);
+    }
+
+    .hero-link.primary:hover {
+      background: var(--ink-light);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-link.secondary {
+      background: var(--sand);
+      color: var(--ink);
+    }
+
+    .hero-link.secondary:hover {
+      background: var(--sand-dark);
+      transform: translateY(-1px);
+    }
+
+    .hero-link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ====== STATUS BAR ====== */
+    .status-bar {
+      max-width: 900px;
+      margin: 0 auto 80px;
+      padding: 0 40px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    .status-inner {
+      display: flex;
+      gap: 24px;
+      padding: 20px 28px;
+      background: var(--sand);
+      border-radius: var(--radius);
+      flex-wrap: wrap;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--ink-light);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .status-item .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+    }
+
+    /* ====== SECTIONS ====== */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 40px;
+      letter-spacing: -0.5px;
+    }
+
+    /* ====== PROJECTS ====== */
+    .projects-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .project-card {
+      background: white;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project-card:hover {
+      border-color: rgba(0,0,0,0.1);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 16px;
+    }
+
+    .project-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--ink);
+      letter-spacing: -0.3px;
+    }
+
+    .project-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 50px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .badge-wip {
+      background: var(--accent-bg);
+      color: var(--accent);
+    }
+
+    .badge-live {
+      background: var(--green-light);
+      color: var(--green);
+    }
+
+    .badge-fun {
+      background: var(--sky-light);
+      color: var(--sky);
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tech-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      background: var(--tag-bg);
+      color: var(--ink-light);
+      border-radius: 4px;
+      letter-spacing: 0.2px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .project-link:hover {
+      color: var(--accent);
+    }
+
+    .project-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ====== EXPERIENCE ====== */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 32px;
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: background 0.2s;
+    }
+
+    .exp-item:first-child {
+      padding-top: 0;
+    }
+
+    .exp-item:last-child {
+      border-bottom: none;
+    }
+
+    .exp-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      padding-top: 4px;
+      line-height: 1.8;
+    }
+
+    .exp-content h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .exp-company {
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      margin-bottom: 4px;
+    }
+
+    .exp-company a {
+      color: var(--ink-light);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--ink-muted);
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .exp-company a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .exp-location {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      margin-bottom: 12px;
+    }
+
+    .exp-summary {
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+    }
+
+    .exp-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .exp-tech .tech-tag {
+      font-size: 0.68rem;
+      padding: 3px 8px;
+    }
+
+    /* ====== ABOUT / INTERESTS ====== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .about-card {
+      background: white;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all 0.25s;
+    }
+
+    .about-card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .about-card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .about-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .about-card p {
+      font-size: 0.875rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+    }
+
+    /* ====== SKILLS ====== */
+    .skills-group {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px 24px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .skills-group:last-child {
+      border-bottom: none;
+    }
+
+    .skills-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-top: 4px;
+    }
+
+    .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ====== FOOTER ====== */
+    footer {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-left {
+      font-size: 0.83rem;
+      color: var(--ink-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 0.83rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    /* ====== ANIMATIONS ====== */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(253, 251, 247, 0.98);
+        backdrop-filter: blur(16px);
+        flex-direction: column;
+        padding: 20px;
+        gap: 16px;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-mobile-toggle {
+        display: block;
+      }
+
+      .hero {
+        padding: 120px 20px 60px;
+      }
+
+      .status-bar {
+        padding: 0 20px;
+      }
+
+      .status-inner {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      section {
+        padding: 0 20px 60px;
+      }
+
+      .exp-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-group {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .project-header {
+        flex-direction: column;
+      }
+
+      footer {
+        padding: 30px 20px;
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* ====== CHRISTMAS TREE CARD SPECIAL ====== */
+    .card-fun {
+      background: linear-gradient(135deg, #f8fffe 0%, #f0faf5 100%);
+    }
+
+    .card-fun:hover {
+      border-color: rgba(90, 140, 106, 0.2);
+    }
+
+    .card-fun::before {
+      background: linear-gradient(90deg, var(--green), #7DB88E);
+    }
+    /* ====== PHOTO GALLERY ====== */
+    .gallery-section {
+      max-width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .gallery-section .section-label,
+    .gallery-section .section-title {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 40px;
+    }
+
+    .gallery-track-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      cursor: grab;
+      padding: 0 40px;
+    }
+
+    .gallery-track-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .gallery-track-wrapper:active {
+      cursor: grabbing;
+    }
+
+    .gallery-track {
+      display: flex;
+      gap: 16px;
+      padding: 4px 0 20px;
+      width: max-content;
+    }
+
+    .gallery-item {
+      flex-shrink: 0;
+      height: 320px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .gallery-item img {
+      height: 100%;
+      width: auto;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.03);
+    }
+
+    .gallery-hint {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 12px 40px 0;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      text-align: right;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-section .section-label,
+      .gallery-section .section-title {
+        padding: 0 20px;
+      }
+
+      .gallery-track-wrapper {
+        padding: 0 20px;
+      }
+
+      .gallery-item {
+        height: 240px;
+      }
+
+      .gallery-hint {
+        padding: 12px 20px 0;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Particle Canvas -->
-  <canvas id="particleCanvas"></canvas>
 
-  <!-- Cursor Follower -->
-  <div class="cursor-follower"></div>
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">Polaris Wu</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <button class="nav-mobile-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-  <div class="container">
-    <div class="content-wrapper">
-      <div class="name-section">
-        <h1 class="name">Polaris Wu</h1>
-        <div class="name-divider"></div>
-        <p class="name-alt">Siqi Wu</p>
+  <!-- HERO -->
+  <header class="hero">
+    <p class="hero-greeting">Hello, I'm</p>
+    <h1 class="hero-name">
+      Polaris Wu
+      <span class="alt-name">also known as Siqi Wu</span>
+    </h1>
+    <p class="hero-desc">
+      Software engineer who builds <strong>backend systems</strong> and <strong>AI-powered applications</strong>.
+      NYU CS '26. Passionate about cloud infrastructure, open-source, and making AI agents that actually work.
+    </p>
+    <div class="hero-links">
+      <a href="https://github.com/Polaris-Wu450" target="_blank" rel="noopener" class="hero-link primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/siqiwu-/" target="_blank" rel="noopener" class="hero-link secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:polariswu74@gmail.com" class="hero-link secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </a>
+    </div>
+  </header>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar">
+    <div class="status-inner">
+      <div class="status-item">
+        <div class="status-dot"></div>
+        Open to new grad SWE roles
       </div>
-
-      <div class="clock-section" id="clockContainer">
-        <div class="clock-display">
-          <div class="clock-icon-wrapper">
-            <div class="clock-icon">🕐</div>
-            <div class="clock-ring"></div>
-          </div>
-          <div class="time-info">
-            <div class="time-label">Eastern Standard Time</div>
-            <div class="time-value" id="estTime">--:--:--</div>
-            <div class="date-value" id="estDate">-- --, ----</div>
-          </div>
-        </div>
-        <div class="clock-hint">
-          <span class="hint-icon">✨</span>
-          <span>Click to explore my latest project</span>
-          <span class="hint-arrow">→</span>
-        </div>
+      <div class="status-item">
+        <span class="mono">NYU CS '26 · GPA 3.81</span>
       </div>
-
-      <div class="about-section">
-        <div class="section-header">
-          <h2>About Me</h2>
-          <div class="section-divider"></div>
-        </div>
-        <div class="about-content">
-          <p>
-            I'm passionate about <strong>backend development</strong>, building robust and scalable systems that power modern applications. 
-            I'm deeply interested in <strong>cloud computing</strong> and its transformative potential, exploring how cloud technologies 
-            can solve complex problems and enable innovation. Additionally, I'm enthusiastic about <strong>AI</strong> and its applications, 
-            constantly learning about how artificial intelligence can enhance and revolutionize the way we build software.
-          </p>
-        </div>
+      <div class="status-item">
+        <span class="mono">New York, NY</span>
       </div>
-
-      <footer class="footer-section">
-        <div class="footer-content">
-          <div class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17 2H7C5.89543 2 5 2.89543 5 4V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V4C19 2.89543 18.1046 2 17 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 18H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <a href="tel:+13472150630" class="contact-link">+1 3472150630</a>
-          </div>
-          <div class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="L22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <a href="mailto:polariswu74@gmail.com" class="contact-link">polariswu74@gmail.com</a>
-          </div>
-          <div class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M6 9H2V21H6V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <a href="https://www.linkedin.com/in/siqiwu-/" target="_blank" rel="noopener noreferrer" class="contact-link">LinkedIn</a>
-          </div>
-        </div>
-      </footer>
     </div>
   </div>
 
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/particles.js"></script>
-  <script src="assets/js/cursor.js"></script>
+  <!-- PROJECTS -->
+  <section id="projects" class="reveal">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">Things I'm building</h2>
+
+    <div class="projects-grid">
+
+      <!-- RetailOps AI -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-name">RetailOps AI</div>
+          <span class="project-badge badge-wip">In Progress</span>
+        </div>
+        <p class="project-desc">
+          Enterprise B2B platform that automates customer feedback processing for large retail chains.
+          Uses LLMs to analyze 7,000+ daily reviews across multiple e-commerce channels, auto-generates
+          SMART action plans for regional managers, and tracks SLA compliance with real-time alerting.
+        </p>
+        <div class="project-tech">
+          <span class="tech-tag">Django</span>
+          <span class="tech-tag">DRF</span>
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">Redis</span>
+          <span class="tech-tag">AWS SQS</span>
+          <span class="tech-tag">Celery</span>
+          <span class="tech-tag">Claude API</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">Terraform</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Polaris-Wu450/RetailOps_AI" target="_blank" rel="noopener" class="project-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            Source
+          </a>
+        </div>
+      </div>
+
+      <!-- Personal Intelligent Agent -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-name">Personal Intelligent Agent</div>
+          <span class="project-badge badge-wip">In Progress</span>
+        </div>
+        <p class="project-desc">
+          An AI-powered personal assistant agent that manages tasks, schedules, and information retrieval
+          through natural language. Built with a focus on tool-use orchestration, context management,
+          and integration with external services via APIs and MCP protocols.
+        </p>
+        <div class="project-tech">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">FastAPI</span>
+          <span class="tech-tag">LangChain</span>
+          <span class="tech-tag">OpenAI</span>
+          <span class="tech-tag">Claude API</span>
+          <span class="tech-tag">MCP</span>
+          <span class="tech-tag">Docker</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Polaris-Wu450/personal-intelligence-agent" target="_blank" rel="noopener" class="project-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            Source
+          </a>
+        </div>
+      </div>
+
+      <!-- Christmas Tree -->
+      <div class="project-card card-fun">
+        <div class="project-header">
+          <div class="project-name">3D Christmas Tree</div>
+          <span class="project-badge badge-fun">Fun Project</span>
+        </div>
+        <p class="project-desc">
+          An interactive 3D Christmas tree built with React Three Fiber. Features particle
+          effects, dynamic lighting, and festive animations. Sometimes you just gotta build
+          something for the joy of it.
+        </p>
+        <div class="project-tech">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Three.js</span>
+          <span class="tech-tag">React Three Fiber</span>
+          <span class="tech-tag">Vite</span>
+        </div>
+        <div class="project-links">
+          <a href="./christmas-tree/index.html" class="project-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live Demo
+          </a>
+          <a href="https://github.com/Polaris-Wu450/Christmas-Creation" target="_blank" rel="noopener" class="project-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            Source
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="reveal">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">Where I've worked</h2>
+
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-date">May — Aug 2025</div>
+        <div class="exp-content">
+          <h3>Software Engineer Intern</h3>
+          <div class="exp-company"><a href="https://www.scam.ai/en">Reality Inc. (Scam AI)</a></div>
+          <div class="exp-location">Berkeley, CA</div>
+          <p class="exp-summary">
+            Built the centralized API gateway for a B2B anti-fraud platform serving banks and device manufacturers. Deployed deepfake detection models on GPU instances, redesigned batch processing pipeline with 4× throughput improvement.
+          </p>
+          <div class="exp-tech">
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">AWS</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">CUDA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">Jun — Aug 2024</div>
+        <div class="exp-content">
+          <h3>Software Engineer Intern</h3>
+          <div class="exp-company">Easyhome New Retail Group</div>
+          <div class="exp-location">Beijing, China</div>
+          <p class="exp-summary">
+            Developed an AI-powered feedback processing system handling 7,000+ daily customer reviews across 300+ stores. Implemented multi-level caching reducing response time to 800ms at 5,000+ QPS, and built automated alerting with 15-minute SLA tracking.
+          </p>
+          <div class="exp-tech">
+            <span class="tech-tag">Django</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Redis</span>
+            <span class="tech-tag">Claude API</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">Jun — Aug 2023</div>
+        <div class="exp-content">
+          <h3>Software Engineer Intern</h3>
+          <div class="exp-company">Sunshine Insurance Group</div>
+          <div class="exp-location">Beijing, China</div>
+          <p class="exp-summary">
+            Built microservices-based agent evaluation system ranking 3,000+ sales agents with weighted scoring. Implemented scheduled batch processing and optimized database queries, reducing report generation latency by 20%.
+          </p>
+          <div class="exp-tech">
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Kafka</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="reveal">
+    <p class="section-label">Skills</p>
+    <h2 class="section-title">Tech I work with</h2>
+
+    <div>
+      <div class="skills-group">
+        <div class="skills-label">Languages</div>
+        <div class="skills-tags">
+          <span class="tech-tag">Java</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">Go</span>
+          <span class="tech-tag">SQL</span>
+          <span class="tech-tag">C++</span>
+          <span class="tech-tag">Bash</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <div class="skills-label">Backend</div>
+        <div class="skills-tags">
+          <span class="tech-tag">Spring Boot</span>
+          <span class="tech-tag">Django</span>
+          <span class="tech-tag">Flask</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">Express</span>
+          <span class="tech-tag">FastAPI</span>
+          <span class="tech-tag">REST APIs</span>
+          <span class="tech-tag">WebSocket</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <div class="skills-label">Frontend</div>
+        <div class="skills-tags">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Next.js</span>
+          <span class="tech-tag">Tailwind CSS</span>
+          <span class="tech-tag">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <div class="skills-label">Cloud</div>
+        <div class="skills-tags">
+          <span class="tech-tag">AWS (EC2, SQS, Lambda, S3, RDS)</span>
+          <span class="tech-tag">GCP</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">Kubernetes</span>
+          <span class="tech-tag">Terraform</span>
+          <span class="tech-tag">GitHub Actions</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <div class="skills-label">Data & AI</div>
+        <div class="skills-tags">
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">MongoDB</span>
+          <span class="tech-tag">Redis</span>
+          <span class="tech-tag">Kafka</span>
+          <span class="tech-tag">Claude API</span>
+          <span class="tech-tag">OpenAI API</span>
+          <span class="tech-tag">LangChain</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="reveal">
+    <p class="section-label">About</p>
+    <h2 class="section-title">A bit more about me</h2>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-card-icon">&#x1F680;</div>
+        <h3>Always building</h3>
+        <p>
+          I believe the best way to learn is to build. Currently working on AI agent systems and
+          exploring how LLMs can automate real-world workflows. I read open-source codebases for fun.
+        </p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">&#x2601;&#xFE0F;</div>
+        <h3>Cloud & systems</h3>
+        <p>
+          Drawn to backend architecture, distributed systems, and cloud infrastructure.
+          I like making things fast, reliable, and scalable — the kind of work that happens
+          behind the scenes.
+        </p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">&#x1F30F;</div>
+        <h3>Beijing → NYC</h3>
+        <p>
+          Originally from Beijing, grew up traveling through Europe and Russia,
+          recently explored Japan, and planning a trip to Spain next. I bring a global
+          perspective and genuine curiosity to everything I do.
+        </p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">&#x2615;</div>
+        <h3>Off the clock</h3>
+        <p>
+          You'll find me exploring NYC food spots, visiting tea houses, playing tennis,
+          doing pilates, singing karaoke, or wandering through a new city with my camera.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO GALLERY -->
+  <section id="gallery" class="reveal gallery-section">
+    <p class="section-label">Life</p>
+    <h2 class="section-title">Beyond the code</h2>
+    <div class="gallery-track-wrapper">
+      <div class="gallery-track">
+        <div class="gallery-item"><img src="photos/p1.jpeg" alt="Grace Hopper 2025" loading="lazy"></div>
+        <div class="gallery-item"><img src="photos/p4.jpeg" alt="Staten Island Ferry" loading="lazy"></div>
+        <div class="gallery-item"><img src="photos/p3.jpeg" alt="Mountain viewpoint" loading="lazy"></div>
+        <div class="gallery-item"><img src="photos/p6.jpeg" alt="Horseshoe Bend" loading="lazy"></div>
+        <div class="gallery-item"><img src="photos/p5.jpeg" alt="Lake Powell" loading="lazy"></div>
+        <div class="gallery-item"><img src="photos/p2.jpeg" alt="NYC night" loading="lazy"></div>
+        <div class="gallery-item"><img src="photos/p7.jpeg" alt="Disneyland" loading="lazy"></div>
+        <div class="gallery-item"><img src="photos/p8.jpeg" alt="Venetian" loading="lazy"></div>
+      </div>
+    </div>
+    <p class="gallery-hint">Scroll to explore &rarr;</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      &copy; 2026 Polaris Wu
+    </div>
+    <div class="footer-links">
+      <a href="mailto:polariswu74@gmail.com">polariswu74@gmail.com</a>
+      <a href="tel:+13472150630">(347) 215-0630</a>
+      <a href="https://github.com/Polaris-Wu450" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/siqiwu-/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Gallery drag-to-scroll
+    const gallery = document.querySelector('.gallery-track-wrapper');
+    if (gallery) {
+      let isDown = false, startX, scrollLeft;
+      gallery.addEventListener('mousedown', e => {
+        isDown = true;
+        startX = e.pageX - gallery.offsetLeft;
+        scrollLeft = gallery.scrollLeft;
+      });
+      gallery.addEventListener('mouseleave', () => isDown = false);
+      gallery.addEventListener('mouseup', () => isDown = false);
+      gallery.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - gallery.offsetLeft;
+        gallery.scrollLeft = scrollLeft - (x - startX) * 1.5;
+      });
+    }
+  </script>
 </body>
 </html>

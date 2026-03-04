@@ -1,25 +1,26 @@
 # I'm Polaris Wu. Welcome to My Personal Portfolio
+# Polaris Wu — Personal Portfolio
 
-## Click this
+Live site: https://polaris-wu450.github.io
 
-Visit the live site at: [https://polaris-wu450.github.io](https://polaris-wu450.github.io)
+This repository hosts a static personal portfolio built with plain HTML, CSS and JavaScript. It includes a small photo gallery and a separate built demo for a 3D Christmas tree project.
 
-## Tech Stack
+## What you'll find here
 
-- **HTML5** / **CSS3** / **JavaScript**
-- **Canvas API** for particle animations
-- **React Three Fiber** (Christmas Tree project)
+- `index.html` — the main portfolio page (hero, projects, experience, skills, about, and a photo gallery).
+- `assets/` — supporting files:
+	- `assets/css/styles.css` — primary stylesheet (styles are also embedded in `index.html` for convenience in this repo).
+	- `assets/js/` — small JS helpers (cursor, main, particles).
+- `photos/` — images used by the gallery referenced from `index.html`.
+- `christmas-tree/` — a built demo (open `christmas-tree/index.html` to view the React Three Fiber tree).
 
-## Project Structure (for now)
+## Tech / features
 
-```
-├── assets/
-│   ├── css/          # Stylesheets
-│   └── js/           # JavaScript files
-├── christmas-tree/   # Built Christmas tree project
-├── projects/         # Source projects
-└── index.html        # Main page
-```
+- HTML5, CSS3, and vanilla JavaScript
+- Touch-friendly horizontal photo gallery with drag-to-scroll
+- Small canvas/particles and cursor effects (in `assets/js/`)
+- Separate React Three Fiber demo (in `christmas-tree/`)
+
 
 ## Contact
 
